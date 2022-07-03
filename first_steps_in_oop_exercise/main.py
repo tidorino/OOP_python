@@ -1,14 +1,15 @@
-from OOP_Python.first_steps_in_oop_exercise.project.pokemon import Pokemon
-from OOP_Python.first_steps_in_oop_exercise.project.trainer import Trainer
+from project.section import Section
+from project.task import Task
 
-
-pokemon = Pokemon("Pikachu", 90)
-print(pokemon.pokemon_details())
-trainer = Trainer("Ash")
-print(trainer.add_pokemon(pokemon))
-second_pokemon = Pokemon("Charizard", 110)
-print(trainer.add_pokemon(second_pokemon))
-print(trainer.add_pokemon(second_pokemon))
-print(trainer.release_pokemon("Pikachu"))
-print(trainer.release_pokemon("Pikachu"))
-print(trainer.trainer_data())
+task = Task("Make bed", "27/05/2020")
+print(task.change_name("Go to University"))
+print(task.change_due_date("28.05.2020"))
+task.add_comment("Don't forget laptop")
+print(task.edit_comment(0, "Don't forget laptop and notebook"))
+print(task.details())
+section = Section("Daily tasks")
+print(section.add_task(task))
+second_task = Task("Make bed", "27/05/2020")
+section.add_task(second_task)
+print(section.clean_section())
+print(section.view_section())
