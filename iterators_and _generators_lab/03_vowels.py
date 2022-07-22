@@ -2,7 +2,7 @@ class vowels:
     def __init__(self, string):
         self.string = string
         self.i = 0
-        self.end = len(string) -1
+        self.end = len(string) - 1
 
     def __iter__(self):
         return self
