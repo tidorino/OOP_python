@@ -5,7 +5,7 @@ from unittest import TestCase, main
 
 class MammalTest(TestCase):
 
-    def test_worker_is_initialized_correctly(self):
+    def test_mammal_is_initialized_correctly(self):
         mammal = Mammal('Niko', 'hippo', 'huu')
 
         self.assertEqual('Niko', mammal.name)
