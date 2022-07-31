@@ -25,8 +25,10 @@ class Race:
     def register_driver(self, driver: Driver):
         if driver.car is None:
             raise Exception(f'Driver {driver.name} could not participate in the race!')
+
         if any(d.name == driver.name for d in self.drivers):
-            raise f'Driver {driver.name} is already added in {self.name} race.'
+            return f'Driver {driver.name} is already added in {self.name} race.'
+
         self.drivers.append(driver)
         return f'Driver {driver.name} added in {self.name} race.'
 
