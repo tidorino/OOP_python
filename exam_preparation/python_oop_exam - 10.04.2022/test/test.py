@@ -46,7 +46,7 @@ class MovieTest(TestCase):
         self.assertEqual(expected_result, result)
 
     def test_repr(self):
-        result = self.movie.__repr__()
+        result = repr(self.movie)
         expected = f"Name: {self.movie.name}\nYear of Release: {self.movie.year}\nRating: {self.movie.rating:.2f}\n" \
                    f"Cast: {', '.join(self.movie.actors)}"
         self.assertEqual(expected, result)

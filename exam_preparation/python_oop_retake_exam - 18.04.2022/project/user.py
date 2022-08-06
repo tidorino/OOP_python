@@ -11,7 +11,8 @@ class User:
 
     @username.setter
     def username(self, value):
-        if value == '':
+        # if not value:
+        if len(value) == 0:
             raise ValueError('Invalid username!')
         self.__username = value
 
@@ -26,15 +27,30 @@ class User:
         self.__age = value
 
     def __str__(self):
-        result = f'Username: {self.username}, Age: {self.age}\nLiked movies:\n'
-        if not self.movies_liked:
-            result += 'No movies liked.\n'
-        for movie in self.movies_liked:
-            result += ' '.join(movie)
-        result += 'Owned movies:\n'
-        if not self.movies_owned:
-            result += 'No movies owned.'
-        for movie in self.movies_owned:
-            result += ' '.join(movie)
-        return result
+        result = ''
+        result += f'Username: {self.username}, Age: {self.age}\nLiked movies:\n'
+        if self.movies_liked:
+            result += '\n'.join(m.details() for m in self.movies_liked)
+        result += 'No movies liked.\n'
 
+        result += 'Owned movies:\n'
+        if self.movies_owned:
+            result += '\n'.join(m.details() for m in self.movies_owned)
+        result += 'No movies owned.'
+
+        return result.strip()
+
+    # def __str__(self):
+    #     result_str = [f'Username: {self.username}, Age: {self.age}', 'Liked movies:']
+    #     if len(self.movies_liked) > 0:
+    #         for liked in self.movies_liked:
+    #             result_str.append(liked.details())
+    #     else:
+    #         result_str.append('No movies liked.')
+    #     result_str.append('Owned movies:')
+    #     if len(self.movies_owned) > 0:
+    #         for owned in self.movies_owned:
+    #             result_str.append(owned.details())
+    #     else:
+    #         result_str.append('No movies owned.')
+    #     return '\n'.join(result_str)
