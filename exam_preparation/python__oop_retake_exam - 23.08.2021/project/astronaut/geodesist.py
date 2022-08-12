@@ -2,10 +2,9 @@ from project.astronaut.astronaut import Astronaut
 
 
 class Geodesist(Astronaut):
-    OXYGEN = 50
 
-    def __init__(self,name: str):
-        super().__init__(name, self.OXYGEN)
+    def __init__(self, name: str):
+        super().__init__(name, 50)
 
     def breathe(self):
-        self.OXYGEN -= self.NEEDED_UNITS_OXYGEN
+        self.oxygen -= 10

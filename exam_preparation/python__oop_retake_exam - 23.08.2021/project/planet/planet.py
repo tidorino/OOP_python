@@ -9,6 +9,6 @@ class Planet:
 
     @name.setter
     def name(self, value):
-        if not value.strip():
+        if value.strip() == '':
             raise ValueError('Planet name cannot be empty string or whitespace!')
         self.__name = value

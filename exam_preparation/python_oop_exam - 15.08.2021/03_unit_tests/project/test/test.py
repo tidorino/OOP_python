@@ -60,24 +60,26 @@ class PetShopsTests(TestCase):
         self.assertEqual('Please insert a valid pet name', str(ex.exception))
 
     def test_feed_pet__if_food_name_not_in_food_list_expect_to_raise(self):
-        self.pet_shop.food = {'food2': 0}
+        self.pet_shop.food['food2'] = 0
         self.pet_shop.pets = ['pet2']
         result = self.pet_shop.feed_pet('food1', 'pet2')
         self.assertEqual('You do not have food1', result)
 
     def test_feed_pet__if_food_capacity_is_less_than_100(self):
-        self.pet_shop.food = {'food2': 50}
-        self.pet_shop.pets = ['pet2']
+        self.pet_shop.food['food2'] = 50
+        self.pet_shop.pets.append('pet2')
 
         result = self.pet_shop.feed_pet('food2', 'pet2')
         self.assertEqual('Adding food...', result)
+        self.assertEqual(50 + 1000.00, self.pet_shop.food['food2'])
 
     def test_feed_pet__if_food_capacity_is_more_than_100(self):
-        self.pet_shop.food = {'food2': 1050}
+        self.pet_shop.food['food2'] = 165
         self.pet_shop.pets = ['pet2']
 
         result = self.pet_shop.feed_pet('food2', 'pet2')
         self.assertEqual('pet2 was successfully fed', result)
+        self.assertEqual(65, self.pet_shop.food['food2'])
 
     def test_repr(self):
         self.pet_shop.pets = ['pet2', 'pet1']

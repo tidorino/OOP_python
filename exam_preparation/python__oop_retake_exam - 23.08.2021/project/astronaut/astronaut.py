@@ -15,17 +15,9 @@ class Astronaut(ABC):
 
     @name.setter
     def name(self, value):
-        if not value.strip():
+        if value.strip() == '':
             raise ValueError('Astronaut name cannot be empty string or whitespace!')
         self.__name = value
-
-    @property
-    def oxygen(self):
-        return self.__oxygen
-
-    @oxygen.setter
-    def oxygen(self, value):
-        self.__oxygen = value
 
     @abstractmethod
     def breathe(self):

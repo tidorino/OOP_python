@@ -2,11 +2,9 @@ from project.astronaut.astronaut import Astronaut
 
 
 class Biologist(Astronaut):
-    NEEDED_UNITS_OXYGEN = 5
-    OXYGEN = 70
 
-    def __init__(self,name: str):
-        super().__init__(name, self.OXYGEN)
+    def __init__(self, name: str):
+        super().__init__(name, 70)
 
     def breathe(self):
-        self.OXYGEN -= self.NEEDED_UNITS_OXYGEN
+        self.oxygen -= 5
