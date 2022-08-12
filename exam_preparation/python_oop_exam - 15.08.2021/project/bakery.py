@@ -2,7 +2,6 @@ from project.core.food_factory import FoodFactory
 from project.core.drink_factory import DrinkFactory
 from project.core.table_factory import TableFactory
 from project.core.validator import Validator
-from project.table.table import Table
 
 
 class Bakery:
@@ -49,31 +48,33 @@ class Bakery:
         return f'Added table number {table_number} in the bakery'
 
     def reserve_table(self, number_of_people):
-        for table in self.tables_repository:
-            if table.is_reserved:
-                continue
-            if table.capacity >= number_of_people:
-                table.reserve(number_of_people)
-                return f'Table {table.table_number} has been reserved for {number_of_people} people'
-        return f'No available table for {number_of_people} people'
-
-    def order_food(self, table_number: int, *food_names: []):
-        table = self.find_table_by_number(table_number)
+        table = self.__find_free_table(number_of_people)
         if table is None:
+            return f'No available table for {number_of_people} people'
+        table.reserve(number_of_people)
+        return f'Table {table.table_number} has been reserved for {number_of_people} people'
+
+    def order_food(self, table_number: int, *foods: []):
+        table = self.find_table_by_number(table_number)
+        if not table:
             return f'Could not find table {table_number}'
 
-        ordered_foods = f'Table {table_number} ordered:\n'
-        skipped_order_foods = f'{self.name} does not have in the menu:\n'
-
-        for food_name in food_names:
+        food_not_in_menu = []
+        for food_name in foods:
             food = self.find_food_by_name(food_name)
-            if food is None:
-                skipped_order_foods += food_name + '\n'
+            if not food:
+                food_not_in_menu.append(food_name)
             else:
                 table.order_food(food)
-                ordered_foods += str(food) + '\n'
 
-        return ordered_foods + skipped_order_foods.strip()
+        result = f'Table {table_number} ordered:\n'
+        for food in table.food_orders:
+            result += repr(food) + '\n'
+        result.strip()
+        result += f'{self.name} does not have in the menu:\n'
+        for food_name in food_not_in_menu:
+            result += food_name + '\n'
+        return result.strip()
 
     def order_drink(self, table_number: int, *drink_names: []):
         table = self.find_table_by_number(table_number)
@@ -95,11 +96,11 @@ class Bakery:
 
     def leave_table(self, table_number):
         table = self.find_table_by_number(table_number)
-        bill = table.get_bill()
-        self.total_income += bill
-
-        table.clear()
-        return f'Table: {table_number}\n' + f'Bill: {bill:.2f}'
+        if table:
+            bill = table.get_bill()
+            self.total_income += bill
+            table.clear()
+            return f'Table: {table_number}\nBill: {bill:.2f}'
 
     def get_free_tables_info(self):
         result = ''
@@ -115,18 +116,22 @@ class Bakery:
         for table in self.tables_repository:
             if table.table_number == table_number:
                 return table
-        return None
 
     def find_food_by_name(self, food_name):
         for food in self.food_menu:
             if food.name == food_name:
                 return food
-        return None
 
     def find_drink_by_name(self, drink_name):
         for drink in self.drinks_menu:
             if drink.name == drink_name:
                 return drink
+        return None
+
+    def __find_free_table(self, number_of_people):
+        for table in self.tables_repository:
+            if not table.is_reserved and table.capacity >= number_of_people:
+                return table
         return None
 
 

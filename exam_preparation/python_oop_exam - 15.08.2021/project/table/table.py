@@ -5,7 +5,7 @@ from project.core.validator import Validator
 
 
 class Table(ABC):
-
+    @abstractmethod
     def __init__(self, table_number, capacity):
         self.table_number = table_number
         self.capacity = capacity
@@ -37,22 +37,22 @@ class Table(ABC):
         Validator.raise_if_number_is_zero_or_negative(value, 'Capacity has to be greater than 0!')
         self.__capacity = value
         
-    @property
-    @abstractmethod
-    def min_table_number(self):
-        pass
+    # @property
+    # @abstractmethod
+    # def min_table_number(self):
+    #     pass
+    #
+    # @property
+    # @abstractmethod
+    # def max_table_number(self):
+    #     pass
+    #
+    # @property
+    # @abstractmethod
+    # def table_number_error_message(self):
+    #     pass
 
-    @property
-    @abstractmethod
-    def max_table_number(self):
-        pass
-    
-    @property
-    @abstractmethod
-    def table_number_error_message(self):
-        pass
-
-    def reserve(self,number_of_people):
+    def reserve(self, number_of_people):
         self.is_reserved = True
         self.number_of_people = number_of_people
 
@@ -73,11 +73,6 @@ class Table(ABC):
 
     def free_table_info(self):
         if not self.is_reserved:
-            return f'Table: {self.table_number}\n' +\
-                   f'Type: {self.__class__.__name__}\n' + \
+            return f'Table: {self.table_number}\n' \
+                   f'Type: {self.__class__.__name__}\n' \
                    f'Capacity: {self.capacity}'
-            # result = f'Table: {self.table_number}\n'
-            # result += f'Type: {self.__class__.__name__}\n'
-            # result += f'Capacity: {self.capacity}'
-            # return result
-        

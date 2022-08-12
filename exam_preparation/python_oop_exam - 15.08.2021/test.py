@@ -1,6 +1,6 @@
 from project.bakery import Bakery
 
-bakery = Bakery('Random name')
+bakery = Bakery('Bakery')
 print(bakery.add_food('Cake', 'Carrot', 3.4))
 print(bakery.add_food('Bread', 'Banana', 4))
 print(bakery.add_food('Cake', 'Chocolate', 2.4))
