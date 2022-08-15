@@ -11,7 +11,7 @@ class Jockey:
         # When a jockey is created in the app, he/she has NOT been given a horse yet.
         # o	The value should be set to None.
         # o	Keep in mind that one jockey can ride only one horse.
-        self.horse: Horse.__class__.__name__ = None
+        self.horse = None
 
     @property
     def name(self):

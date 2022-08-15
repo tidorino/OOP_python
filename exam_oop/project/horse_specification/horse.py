@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class Horse(ABC):
-    MAX_SPEED = None
+    MAX_SPEED = 0
     # INCREASES_VALUE = 0
 
     def __init__(self, name, speed):
