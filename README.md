@@ -8,3 +8,27 @@ In Python, object-oriented Programming (OOP) is a programming paradigm that uses
 
 ![image](https://user-images.githubusercontent.com/97727834/210525147-cb98410c-07a5-4809-81ff-4c6037fb1679.png)
 
+### Course content
+
+- Classes and Objects
+- Inheritance
+- Encapsulation
+- Static and Class Methods
+- Polymorphism and Abstraction
+- SOLID
+- Iterators and Generators
+- Decorators
+- Unit Testing/Mocking
+- Design Patterns
+
+### Acquired skills
+
+- Understanding the object-oriented programming paradigm
+- Creating a class hierarchy and inheritance
+- Unit testing
+- Working with iterators and generators
+- Working with decorators
+
+
+![Python OOP - June 2022 - Certificate](https://user-images.githubusercontent.com/97727834/210527602-9a54f9f6-9125-440b-91d6-711ba0360e02.jpeg)
+
