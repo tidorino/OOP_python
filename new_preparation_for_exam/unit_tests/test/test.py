@@ -1,5 +1,5 @@
-from project.movie import Movie
-# from unit_tests.movie import Movie
+# from project.movie import Movie
+from unit_tests.movie import Movie
 
 from unittest import TestCase
 
