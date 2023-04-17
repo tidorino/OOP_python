@@ -32,6 +32,8 @@ class Integer:
 
     # Other solution:
     # try:
+#         if not isinstance(value, str):
+#             raise ValueError
     #     return cls(int(value))
     # except ValueError:
     #     return 'wrong type'
